@@ -1,0 +1,26 @@
+Elevator Algorithm -
+
+For Using Elevator To get to floor X from floor Y
+  - If x is greater than y, press bottom call button.
+  - If, if x is less than y, press top call button.
+  - Otherwise, if x is equal to y, you're on the right floor already, dimwit.
+
+-wait for doors to open.
+-enter elevator.
+-press button corresponding to displayed number x.
+-wait for doors to open.
+  - If displayed "current floor" = x, exit elevator.
+  - Else, wait for doors to close.
+
+
+
+Eat Ramen Algorithm -
+
+If hungry, crave ramen.
+  -Once Craving Ramen, check bank account.
+  -If bank [Bank Account Amount - Rent - Bills - 100] is greater than zero
+    -Call a Lyft, take it to Ramen Izakaya Goku
+  -Otherwise
+    -Open pantry and retrieve top ramen
+    -Cook the Top Ramen.
+Otherwise, study programming.
