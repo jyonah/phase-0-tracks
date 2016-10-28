@@ -8,11 +8,16 @@ pass = gets.chomp
 
 # 2. A method that takes a string as it's argument.
 def encrypt(password)
+  abc = "abcdefghijklmnopqrstuvwxyz"
   # 3. iterate through the string
 	x = 0
 	while x < password.length
+    whereabc = abc.index(password[x])
     # 4. change each character to the next character in the alphabet.
-		password[x] = password[x].next
+    	if whereabc == 25
+    		whereabc = -1
+    	end #if
+		password[x] = abc[whereabc + 1]
 		x += 1
 	end #while
 end #encrypt
@@ -35,7 +40,7 @@ def decrypt(y)
     # 4. for each character find the index in the abc string
     whereabc = abc.index(y[i])
     # 5. returen the character at the index-1 in the abc string
-    y[i] = abc[whereabc-1]
+    y[i] = abc[whereabc - 1]
     i += 1
   end #while
   # 6. return the decrypted string
