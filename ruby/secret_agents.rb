@@ -48,3 +48,34 @@ end #method
 
 decrypt(pass)
 puts pass
+
+
+# OUR DRIVER CODE
+
+#ask the user for a password
+puts "enter your password"
+pass = gets.chomp
+
+#encrypt a few passwords
+first = "abc"
+encrypt(first) #should return "bcd"
+puts first
+
+second = "zed"
+encrypt(second) #should return "afe"
+puts second
+
+#decypt some.
+third = "bcd"
+decrypt(third) #should return "abc"
+puts third
+
+fourth = "afe"
+decrypt(fourth) #should return "zed"
+puts fourth
+
+#Try a nested method call!
+seafood = swordfish
+decrypt(encrypt(seafood))
+puts seafood
+# This nested mehtod call does not work and we cannot figure out why! :D It SHOULD! It SHOULD encrypt "swordfish" and then follow that by decrypting it, but that's not what happens! We get and error! #LearningForLater
