@@ -94,7 +94,7 @@ else #if
 end #if yes_no_q
 questions[:favorite_colors] = "client[:favorite_colors] = []
 color = general_q('List colors, one at a time, pressing enter. Write exit when done.')
-while color != "exit"
+while color != 'exit'
   client[:favorite_colors] << color
   color = general_q('List colors, one at a time, pressing enter. Write exit when done.')
 end #while color"
