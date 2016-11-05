@@ -11,3 +11,17 @@ def search_array (arr, integer)
 end #search_array
 
 p search_array(int_arr, 45)
+
+def fib(fib_term)
+	fib_array = [0,1]
+	fib_term = fib_term - 2
+	fib_term.times do |num|
+		new_fibs = fib_array[-1] + fib_array[-2]
+		fib_array << new_fibs
+	end
+	fib_array
+end
+
+p fib(100)
+array = fib(100)
+p array[99] == 218922995834555169026
