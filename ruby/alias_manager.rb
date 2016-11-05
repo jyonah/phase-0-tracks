@@ -1,50 +1,46 @@
+VOWS = "aeioua"
+CONSTS = "bcdfghjklmnpqrstvwxyzb"
 
-#define a method for creating aliases.
+def next_vow(letter)
+  letter = VOWS[VOWS.index(letter)+1]
+end
+
+def next_const(letter)
+  letter = CONSTS[CONSTS.index(letter)+1]
+end
+
+def swap_names(name)
+  name.split(' ').reverse.join(' ')
+end
+
+def title_case(this_alias)
+  manipulator = this_alias.split(' ')
+  manipulator.each {|word| word.capitalize!}
+  this_alias = manipulator.join(' ')
+end
+
 def make_alias (name)
-  #convert argument to lower case to work with.
-	name.downcase!
-  #split the name into an array, reverse the array, and rejoin for a new string.
-	new_alias = name.split(' ').reverse.join(' ')
-  #define string of consanants and vowels.
-  const = "bcdfghjklmnpqrstvwxyzb"
-  vow = "aeioua"
-  #iterate through the string
+  new_alias = swap_names(name.downcase!)
   new_alias.length.times do |pos|
-    #if letter is a vowel, reassign 'next' vowel.
-    if vow.index(new_alias[pos])
-      index_of_vow = vow.index(new_alias[pos])
-      new_alias[pos] = vow[index_of_vow + 1]
-    #if letter is a consanant, reassign 'next' consanant.
-    elsif const.index(new_alias[pos])
-      index_of_const = const.index(new_alias[pos])
-      new_alias[pos] = const[index_of_const + 1]
-    end #if
-  end #new_alias do
-
-  #break new alias string into array to work with.
-  alias_array= new_alias.split(' ')
-  #capitalize each word in array
-  alias_array.each do |word|
-     word.capitalize!
-  end #do loop
-  #rejoin words in array as a string and return.
-  new_alias = alias_array.join(' ')
+    if VOWS.index(new_alias[pos])
+      new_alias[pos] = next_vow(new_alias[pos])
+    elsif CONSTS.index(new_alias[pos])
+      new_alias[pos] = next_const(new_alias[pos])
+    end#if
+  end #loop
+  title_case(new_alias)
 end #make_alias
 
-#create a hash of identities and aliases 'spy_records'
-spy_records = Hash.new
+def interface()
+  agent_records = Hash.new
+  loop do
+    puts "What is the full name of the person who needs an alias? (Type 'quit' to exit.)"
+    name = gets.chomp
+    puts "" #Whitespace for readability.
+    break if name.downcase == "quit"
+    agent_records[name.to_sym] = make_alias(name)
+  end #loop
+  agent_records.each {|key, value| p "#{key} is also known as #{value}"}
+end #interface
 
-#loop through an interface that breaks if 'quit' is entered.
-loop do
-  #ask user for name to make an alias out of.
-	p "What is the full name of the person who needs an alias? (Type 'quit' to exit.)"
-	name = gets.chomp
-  #break loop if response is 'quit'
-	break if name.downcase == "quit"
-  #save name and new alias to spy_records hash.
-	spy_records[name.to_sym] = make_alias(name)
-  #UI Whitespace.
-	puts ""
-end #until
-puts ""
-spy_records.each {|key, value| p "#{key} is also known as #{value}"}
+interface()
