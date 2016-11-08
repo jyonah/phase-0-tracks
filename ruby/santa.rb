@@ -1,4 +1,7 @@
 class Santa
+  attr_reader :reindeer_ranking, :age
+  attr_accessor :name, :gender, :ethnicity
+
   def initialize(name, gender, ethnicity)
     puts "Initializing Santa instance ..."
     @name = name
@@ -7,7 +10,6 @@ class Santa
     @reindeer_ranking = ["Rudolph", "Dasher", "Dancer", "Prancer", "Vixen", "Comet", "Cupid", "Donner", "Blitzen"]
     @age = 0
   end #initialize
-
 
   def speak
     puts "Ho, ho, ho! Haaappy Holidays!"
@@ -26,28 +28,6 @@ class Santa
     puts "#{reindeer}!!!!"
     @reindeer_ranking.delete(reindeer)
     @reindeer_ranking << reindeer
-  end
-
-  #getter methods
-  def age
-    @age
-  end
-
-  def ethnicity
-    @ethnicity
-  end
-  
-  def reindeer_ranking
-    @reindeer_ranking
-  end
-
-  def gender
-    @gender
-  end
-
-  #setter methods
-  def gender=(new_gender)
-    @gender = new_gender
   end
 
 end #santa
