@@ -2,13 +2,13 @@ class Santa
   attr_reader :reindeer_ranking, :age
   attr_accessor :name, :gender, :ethnicity
 
-  def initialize(name, gender, ethnicity)
+  def initialize(gender, ethnicity, age)
     puts "Initializing Santa instance ..."
-    @name = name
+    puts ""
     @gender = gender
     @ethnicity = ethnicity
     @reindeer_ranking = ["Rudolph", "Dasher", "Dancer", "Prancer", "Vixen", "Comet", "Cupid", "Donner", "Blitzen"]
-    @age = 0
+    @age = age
   end #initialize
 
   def speak
@@ -32,26 +32,36 @@ class Santa
 
 end #santa
 
-nicholas = Santa.new("Nicholas", "male", "caucasian")
-
-p nicholas.age
-nicholas.celebrate_birthday
-p nicholas.age
-
-p nicholas.reindeer_ranking
-nicholas.get_mad_at("Vixen")
-p nicholas.reindeer_ranking
-
-p nicholas.gender
-nicholas.gender=("tranwoman")
-p nicholas.gender
-# santas = []
-# santa_names = ['Nicholas', 'Jenny', 'Wanda', 'Wilbur']
-# santa_genders = ["transman", "gender fluid", "male", "bigender"]
-# santa_ethnicities = ["black", "Latino", "white", "Japanese-African"]
+# OLD DRIVER CODE
+# nicholas = Santa.new("male", "caucasian")
+# p nicholas.age
+# nicholas.celebrate_birthday
+# p nicholas.age
 #
-# santa_names.length.times do |i|
-#   santas << Santa.new(santa_names[i], santa_genders[i], santa_ethnicities[i])
-# end
+# p nicholas.reindeer_ranking
+# nicholas.get_mad_at("Vixen")
+# p nicholas.reindeer_ranking
 #
-# p santas
+# p nicholas.gender
+# nicholas.gender=("tranwoman")
+# p nicholas.gender
+
+def generate_santas(how_many)
+  santas = []
+  santa_genders = ["agender", "female", "bigender", "male", "female", "gender fluid", "N/A"]
+  santa_ethnicities = ["black", "Latino", "white", "Japanese-African", "prefer not to say", "Mystical Creature (unicorn)", "N/A"]
+  how_many.times do |i|
+    santas << Santa.new(santa_genders.sample, santa_ethnicities.sample, rand(0..140))
+  end #generate_santas
+  santas
+end #generate_santas
+
+santas = generate_santas(200)
+
+santas.each_with_index do |item, idx|
+  puts "Santa #{idx}:"
+  puts "gender: #{item.gender}"
+  puts "ethnicity: #{item.ethnicity}"
+  puts "age: #{item.age}"
+  puts ""
+end
