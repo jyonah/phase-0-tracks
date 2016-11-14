@@ -46,9 +46,9 @@ describe Wordplay do
     expect(wordplay.answer).to eq "Hello, I love you - won't you tell me your name?"
     wordplay.build_constructor
     expect(wordplay.all_guesses).to eq []
-    wordplay.check_guess("o")
+    wordplay.check_guess?("o")
     expect(wordplay.all_guesses).to eq ["o"]
-    epxect(wordplay.already_guessed?).to eq false
+    expect(wordplay.already_guessed?("o")).to eq true
   end
 
 end

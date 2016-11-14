@@ -57,7 +57,9 @@ class Wordplay
     correct_value
   end
 
-  
+  def already_guessed?(guess)
+    @all_guesses.include?(guess)
+  end
 
 
 end #class
