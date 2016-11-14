@@ -42,4 +42,13 @@ describe Wordplay do
     expect(wordplay.allowed_guesses).to eq 19
   end
 
+  it "checks if a user has already guessed a letter previously." do
+    expect(wordplay.answer).to eq "Hello, I love you - won't you tell me your name?"
+    wordplay.build_constructor
+    expect(wordplay.all_guesses).to eq []
+    wordplay.check_guess("o")
+    expect(wordplay.all_guesses).to eq ["o"]
+    epxect(wordplay.already_guessed?).to eq false
+  end
+
 end
