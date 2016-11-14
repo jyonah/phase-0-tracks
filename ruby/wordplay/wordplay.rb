@@ -10,7 +10,7 @@ ABC = "abcdefghijklmnopqrstuvwxyz"
 
 class Wordplay
 
-  attr_reader :answer, :correct_guesses, :incorrect_guesses, :allowed_guesses, :guesser_constructor
+  attr_reader :answer, :correct_guesses, :incorrect_guesses, :allowed_guesses, :guesser_constructor, :all_guesses, :is_over
   # attr_accessor
 
   def initialize(answer)
@@ -18,8 +18,10 @@ class Wordplay
     @answer = answer
     @correct_guesses = []
     @incorrect_guesses = []
+    @all_guesses = []
     @guesser_constructor = ""
     @allowed_guesses = ((answer.length / 3) + 4)
+    @is_over = false
   end
 
   def build_constructor
@@ -32,12 +34,38 @@ class Wordplay
     end #each
   end #method
 
+  def check_guess?(guess)
+    correct_value = nil
+    if @answer.downcase.include?(guess)
+      correct_value = true
+      @correct_guesses << guess
+      @all_guesses << guess
+      index = -1
+      @answer.each_char do |character|
+        index += 1
+        if character.downcase == guess
+          @guesser_constructor[index] = character
+        end #if
+      end #do
+    else
+      @incorrect_guesses << guess
+      @all_guesses << guess
+      correct_value = false
+    end #if @answer.include?(guess)
+    @allowed_guesses -= 1
+    correct_value
+  end
+
 
 end #class
 
-game = Wordplay.new("Hello, I love you - won't you tell me your name?")
-
-p game.allowed_guesses
+# game = Wordplay.new("Hello, I love you - won't you tell me your name?")
+# game.build_constructor
+# p game.check_guess?("h")
+# p game.all_guesses
+# p game.incorrect_guesses
+# p game.allowed_guesses
+# p game.guesser_constructor
 # define a method for creating “guesser_builder”
 # 	iterate through answer and push an underscore for every letter of the alphabet and push an identical character for every other symbol or space.
 #

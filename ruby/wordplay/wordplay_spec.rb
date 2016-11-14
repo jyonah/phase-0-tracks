@@ -19,7 +19,7 @@ describe Wordplay do
     expect(wordplay.correct_guesses).to eq []
     expect(wordplay.allowed_guesses).to eq 20
     #Guess Z
-    wordplay.check_guess("z").to eq false
+    expect(wordplay.check_guess?("z")).to eq false
     expect(wordplay.guesser_constructor).to eq "*****, * **** *** - ***'* *** **** ** **** ****?"
     expect(wordplay.incorrect_guesses).to eq ["z"]
     expect(wordplay.correct_guesses).to eq []
