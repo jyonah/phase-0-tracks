@@ -26,4 +26,20 @@ describe Wordplay do
     expect(wordplay.allowed_guesses).to eq 19
   end
 
+  it "checks a users correct guess against the answer." do
+    #Initialize Check
+    expect(wordplay.answer).to eq "Hello, I love you - won't you tell me your name?"
+    wordplay.build_constructor
+    expect(wordplay.guesser_constructor).to eq "*****, * **** *** - ***'* *** **** ** **** ****?"
+    expect(wordplay.incorrect_guesses).to eq []
+    expect(wordplay.correct_guesses).to eq []
+    expect(wordplay.allowed_guesses).to eq 20
+    #Guess "o"
+    expect(wordplay.check_guess?("o")).to eq true
+    expect(wordplay.guesser_constructor).to eq "****o, * *o** *o* - *o*'* *o* **** ** *o** ****?"
+    expect(wordplay.incorrect_guesses).to eq []
+    expect(wordplay.correct_guesses).to eq ["o"]
+    expect(wordplay.allowed_guesses).to eq 19
+  end
+
 end

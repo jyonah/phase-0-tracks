@@ -36,7 +36,8 @@ class Wordplay
 
   def check_guess?(guess)
     correct_value = nil
-    if @answer.downcase.include?(guess)
+    guess.downcase!
+    if @answer.downcase.include?(guess.downcase)
       correct_value = true
       @correct_guesses << guess
       @all_guesses << guess
@@ -59,13 +60,17 @@ class Wordplay
 
 end #class
 
-# game = Wordplay.new("Hello, I love you - won't you tell me your name?")
-# game.build_constructor
-# p game.check_guess?("h")
-# p game.all_guesses
-# p game.incorrect_guesses
-# p game.allowed_guesses
-# p game.guesser_constructor
+game = Wordplay.new("Hello, I love you - won't you tell me your name?")
+game.build_constructor
+p game.check_guess?("O")
+p game.all_guesses
+p game.incorrect_guesses
+p game.allowed_guesses
+p game.guesser_constructor
+
+
+
+
 # define a method for creating “guesser_builder”
 # 	iterate through answer and push an underscore for every letter of the alphabet and push an identical character for every other symbol or space.
 #
