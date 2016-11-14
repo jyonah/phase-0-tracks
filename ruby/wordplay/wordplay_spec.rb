@@ -10,8 +10,20 @@ describe Wordplay do
     expect(wordplay.guesser_constructor).to eq "*****, * **** *** - ***'* *** **** ** **** ****?"
   end
 
-  # it "checks a users geuess against the answer" do
-  #   expect
-  # end
+  it "checks a users incorrect geuess against the answer" do
+    #Initialize Check
+    expect(wordplay.answer).to eq "Hello, I love you - won't you tell me your name?"
+    wordplay.build_constructor
+    expect(wordplay.guesser_constructor).to eq "*****, * **** *** - ***'* *** **** ** **** ****?"
+    expect(wordplay.incorrect_guesses).to eq []
+    expect(wordplay.correct_guesses).to eq []
+    expect(wordplay.allowed_guesses).to eq 20
+    #Guess Z
+    wordplay.check_guess("z").to eq false
+    expect(wordplay.guesser_constructor).to eq "*****, * **** *** - ***'* *** **** ** **** ****?"
+    expect(wordplay.incorrect_guesses).to eq ["z"]
+    expect(wordplay.correct_guesses).to eq []
+    expect(wordplay.allowed_guesses).to eq 19
+  end
 
 end

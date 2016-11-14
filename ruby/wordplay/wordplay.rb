@@ -10,7 +10,7 @@ ABC = "abcdefghijklmnopqrstuvwxyz"
 
 class Wordplay
 
-  attr_reader :answer, :correct_guesses, :incorrect_guesses, :allowed_incorrect_guesses, :guesser_constructor
+  attr_reader :answer, :correct_guesses, :incorrect_guesses, :allowed_guesses, :guesser_constructor
   # attr_accessor
 
   def initialize(answer)
@@ -36,8 +36,8 @@ class Wordplay
 end #class
 
 game = Wordplay.new("Hello, I love you - won't you tell me your name?")
-game.build_constructor
-p game.guesser_constructor
+
+p game.allowed_guesses
 # define a method for creating “guesser_builder”
 # 	iterate through answer and push an underscore for every letter of the alphabet and push an identical character for every other symbol or space.
 #
