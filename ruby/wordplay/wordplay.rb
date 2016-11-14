@@ -1,16 +1,9 @@
-
-# Define class wordplay.
-# initialize and take an answer string, set to instance variable.
-# initialize with empty arrays for correct guesses and incorrect guesses
-# initialize with empty string guesser_constructor
-# initialize with allowed_incorrect_guesses as the value of answer_string.length - 2
-# initialize is_over to false.
-
 ABC = "abcdefghijklmnopqrstuvwxyz"
 
 class Wordplay
 
-  attr_reader :answer, :correct_guesses, :incorrect_guesses, :allowed_guesses, :guesser_constructor, :all_guesses, :is_over
+  attr_reader :answer, :correct_guesses, :incorrect_guesses, :allowed_guesses, :all_guesses
+  attr_accessor :is_over, :guesser_constructor
   # attr_accessor
 
   def initialize(answer)
@@ -20,7 +13,7 @@ class Wordplay
     @incorrect_guesses = []
     @all_guesses = []
     @guesser_constructor = ""
-    @allowed_guesses = ((answer.length / 3) + 4)
+    @allowed_guesses = (answer.length + 5)
     @is_over = false
   end
 
@@ -61,20 +54,76 @@ class Wordplay
     @all_guesses.include?(guess)
   end
 
-
 end #class
 
-game = Wordplay.new("Hello, I love you - won't you tell me your name?")
+#INTERFACE
+
+puts "Hello User 1 - what is the word or phrase your friend will be guessing?"
+user1_input = gets.chomp
+game = Wordplay.new(user1_input)
 game.build_constructor
-p game.check_guess?("O")
-p game.all_guesses
-p game.incorrect_guesses
-p game.allowed_guesses
-p game.guesser_constructor
 
+puts "Hello User 2. You'll be guessing:"
+while !game.is_over
+  puts "Phrase: #{game.guesser_constructor}"
+  puts "You have #{game.allowed_guesses} guess attempts"
+  if game.incorrect_guesses.length > 0
+    puts "Incorrect Guesses: #{game.incorrect_guesses}"
+  end
+  puts "Enter your guesses one letter at a time. Or, if you think you know it, enter the entire."
+  guess = gets.chomp
+  if game.already_guessed?(guess)
+    puts ""
+    puts "You guessed that already silly!"
+    puts ""
+  else
+    if guess.length == game.answer.length
+      if guess == game.answer
+        game.guesser_constructor = game.answer
+        game.is_over = true
+      else
+        game.allowed_guesses -= 1
+        puts ""
+        puts "That's not right!"
+        puts ""
+      end #if guess == game.answer
+    elsif guess.length > 1
+      puts ""
+      puts "That answer wasn't understood. If you're trying to guess the phrase, make sure you entered it exactly - spaces and punctuation included. Otherwise, enter one letter at a time."
+      puts ""
+    else
+      correct = game.check_guess?(guess)
+      if correct
+        puts ""
+        puts "Good job - that's correct. Keep going!"
+        puts ""
+      else
+        puts ""
+        puts "Oops. Try again!"
+        puts ""
+      end
+    end #if guess == game.answer.length
+    if game.answer == game.guesser_constructor || game.allowed_guesses == 0
+      game.is_over = true
+    end
+  end #if game.already_guessed?
 
+end #while !game.is_over
 
+if game.answer == game.guesser_constructor
+  puts "YOU DID IT! You guessed \"#{game.answer}\" with #{game.allowed_guesses} guesses remaining!"
+  puts "Phrase: #{game.answer}"
+  puts "Incorrect Guesses: #{game.incorrect_guesses}"
+  puts "Correct Guesses: #{game.correct_guesses}"
+end
 
+# Pseudocode
+# Define class wordplay.
+# initialize and take an answer string, set to instance variable.
+# initialize with empty arrays for correct guesses and incorrect guesses
+# initialize with empty string guesser_constructor
+# initialize with allowed_incorrect_guesses as the value of answer_string.length - 2
+# initialize is_over to false.
 # define a method for creating “guesser_builder”
 # 	iterate through answer and push an underscore for every letter of the alphabet and push an identical character for every other symbol or space.
 #
@@ -85,8 +134,6 @@ p game.guesser_constructor
 # 	shovel answer into all_guesses
 # 	else iterate through ‘answer’ and replace underscores in gueser_builder for every correct guess
 # 	shovel answer into correct_guesses and all_guesses
-
-
 # INTERFACE
 # Ask user 1 for the word or phrase to guess.
 # initialize new game passing user response.

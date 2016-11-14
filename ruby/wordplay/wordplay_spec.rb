@@ -49,6 +49,7 @@ describe Wordplay do
     wordplay.check_guess?("o")
     expect(wordplay.all_guesses).to eq ["o"]
     expect(wordplay.already_guessed?("o")).to eq true
+    expect(wordplay.already_guessed?("x")).to eq false
   end
 
 end
