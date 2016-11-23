@@ -1,0 +1,40 @@
+1. Display the information in one table (either table is fine).
+
+sqlite> SELECT * FROM trainers;
+1|Jenny|12|29|3
+2|Grace|19|19|2
+3|Hannah|30|12|1
+4|Mamrie|32|30|3
+5|Yolanda|44|50|2
+6|Tina|7|33|1
+sqlite>
+
+2. Update an item that meets some condition (you can choose a condition that makes sense).
+
+sqlite> UPDATE trainers SET age=13 WHERE name="Tina";
+
+3. Display the information in both tables using one query.
+
+sqlite> SELECT * FROM trainers, teams WHERE trainers.team_id = teams.id;
+1|Jenny|12|29|3|3|Valor|Red
+2|Grace|19|19|2|2|Mythic|Blue
+3|Hannah|30|12|1|1|Instinct|Yellow
+4|Mamrie|32|30|3|3|Valor|Red
+5|Yolanda|44|50|2|2|Mythic|Blue
+6|Tina|13|33|1|1|Instinct|Yellow
+sqlite>
+
+4. Display a narrower selection of columns (fewer columns than all of them, in other words) from both tables using one query.
+
+sqlite> SELECT trainers.name, teams.name FROM trainers JOIN teams ON trainers.team_id = teams.id;
+Jenny|Valor
+Grace|Mythic
+Hannah|Instinct
+Mamrie|Valor
+Yolanda|Mythic
+Tina|Instinct
+sqlite>
+
+5. Delete an item that meets some condition (you can choose a condition that makes sense).
+
+DELETE FROM trainers WHERE age=13;
