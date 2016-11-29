@@ -38,3 +38,38 @@ sqlite>
 5. Delete an item that meets some condition (you can choose a condition that makes sense).
 
 DELETE FROM trainers WHERE age=13;
+
+6. JOIN commands:
+
+sqlite> SELECT trainers.name, level, teams.name FROM trainers, teams WHERE trainers.team_id = teams.id;
+name|level|name
+Jenny|29|Valor
+Grace|19|Mythic
+Hannah|12|Instinct
+Mamrie|30|Valor
+Yolanda|50|Mythic
+sqlite>
+
+sqlite> SELECT trainers.name, age, level, teams.name FROM trainers NATURAL JOIN teams;
+sqlite>
+
+## The above query returned no results because the primary key ‘id’ for teams and ‘team_id’ are not naturally named identically. 
+
+sqlite> SELECT trainers.name, teams.name FROM trainers CROSS JOIN teams;
+name|name
+Jenny|Instinct
+Jenny|Mythic
+Jenny|Valor
+Grace|Instinct
+Grace|Mythic
+Grace|Valor
+Hannah|Instinct
+Hannah|Mythic
+Hannah|Valor
+Mamrie|Instinct
+Mamrie|Mythic
+Mamrie|Valor
+Yolanda|Instinct
+Yolanda|Mythic
+Yolanda|Valor
+sqlite>
