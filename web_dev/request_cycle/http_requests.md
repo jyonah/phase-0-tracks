@@ -11,6 +11,7 @@ _What are some common HTTP status codes?_
    * __604:__ Gateway Timeout
      * Access to the secondary web server has timed out.  
 ___
+
 _What is the difference between a GET request and a POST request? When might each be used?_
 
    * Essentially, a __GET__ request fetches soemthing from the server and a __POST__ request gives something to the server. 
