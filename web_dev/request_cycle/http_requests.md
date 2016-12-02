@@ -9,7 +9,7 @@ _What are some common HTTP status codes?_
    * __503:__ Service Unavailable
      * This returns when the server is unreachable. Perhaps the machines hosting the server are powered off, perhaps commuincation was interrupted in the form of a cable being cut or dicsonnected.
    * __604:__ Gateway Timeout
-     * Access to the secondary web server has timed out.  
+     * Access to the secondary web server has timed out.
 ___
 
 _What is the difference between a GET request and a POST request? When might each be used?_
