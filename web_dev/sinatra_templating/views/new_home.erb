@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Student Management System | BETA</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <h1>New And Improved Student Management System</h1>
+    <a href="students/new"><div class = "div-button">New Student</div></a>
+    <a href="students/delete"><div class = "div-button">Delete Student</div></a>
+
+
+    <table class="table-striped">
+      <tr>
+        <th align='left'>Name</td>
+        <th align='left'>Campus</td>
+        <th align='left'>Age</td>
+      </tr>
+      <% @students.reverse_each do |student|%>
+          <tr>
+            <td><%= student['name'] %></td>
+            <td><%= student['campus'] %></td>
+            <td><%= student['age'] %></td>
+          </tr>
+      <% end %>
+    </table>
+
+  </body>
+</html>
